@@ -12,16 +12,17 @@ bool on_off;
 bool boton;
 int sens;
 
-#define buzzer_pin = 12;  //pin d6
-#define boton_pin = 15;   //pin d8
-#define on_off_pin = 14;  //pin d5
-#define sens_pin = A0;    //pin A0
+#define buzzer_pin 12 //pin d6
+#define boton_pin 15  //pin d8
+#define on_off_pin 14 //pin d5
+#define sens_pin A0   //pin A0
 
-int ALTO = x; //definir un valor alto de gas
+int ALTO = 300; //definir un valor alto de gas
 unsigned long ult_tiempo;
 int pantalla;
 
 void setup(){
+  //Serial.begin(9600);
   lcd.init();
   lcd.backlight();
   
@@ -84,7 +85,7 @@ void loop(){
   sens = analogRead(sens_pin);     //pin A0 lee sensor de gas
   boton = digitalRead(boton_pin);   //pin d8 boton
 
-  Blynk.VirtualWrite(V5, sens);//envia sens por el pin virtual V5
+  Blynk.virtualWrite(V5, sens);//envia sens por el pin virtual V5
 
   if (on_off == HIGH){    //si esta ONLINE
     ONLINE();
